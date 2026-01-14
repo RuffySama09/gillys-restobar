@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gilly's Restobar | Rooftop, Cocktails & Vibe</title>
+    <style>
+        :root {
+            --primary: #FFD700; /* Gold */
+            --dark: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --text: #e0e0e0;
+            --font-main: 'Helvetica Neue', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background-color: var(--dark); 
+            color: var(--text); 
+            font-family: var(--font-main); 
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* TYPOGRAPHY */
+        h1, h2, h3 { color: #fff; text-transform: uppercase; letter-spacing: 2px; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .logo { font-size: 1.5rem; font-weight: 900; color: var(--primary); }
+        .nav-links a { margin-left: 30px; font-size: 0.9rem; font-weight: 600; }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+                        url('https://images.unsplash.com/photo-1572116469696-31de0f17cc34?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 { font-size: 4rem; margin-bottom: 20px; line-height: 1.1; }
+        .hero p { font-size: 1.5rem; color: var(--primary); font-weight: 300; margin-bottom: 40px; }
+        
+        .cta-btn {
+            padding: 15px 40px;
+            background: var(--primary);
+            color: var(--dark);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+        }
+        .cta-btn:hover { background: #fff; transform: scale(1.05); }
+
+        /* THE VIBE (ROOFTOP) */
+        .vibe { padding: 100px 10%; background: var(--dark-gray); text-align: center; }
+        .vibe h2 { margin-bottom: 30px; color: var(--primary); }
+        .vibe p { max-width: 700px; margin: 0 auto; font-size: 1.1rem; color: #aaa; }
+
+        /* MENU GRID */
+        .menu { padding: 100px 5%; }
+        .section-title { text-align: center; margin-bottom: 60px; font-size: 2.5rem; }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-item {
+            background: var(--dark-gray);
+            padding: 30px;
+            border-left: 3px solid var(--primary);
+            transition: 0.3s;
+        }
+        .menu-item:hover { transform: translateY(-10px); background: #222; }
+        .menu-item h3 { font-size: 1.2rem; margin-bottom: 10px; }
+        .menu-item p { font-size: 0.9rem; color: #888; }
+
+        /* LOCATION & FOOTER */
+        .footer {
+            padding: 80px 5%;
+            background: #000;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+        
+        .address { 
+            font-style: normal; 
+            margin: 30px 0; 
+            color: #888; 
+            font-size: 1.1rem;
+        }
+
+        /* MOBILE OPTIMIZATION */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* Simplified for single file */
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">GILLY'S RESTOBAR</div>
+        <div class="nav-links">
+            <a href="#vibe">THE VIBE</a>
+            <a href="#menu">MENU</a>
+            <a href="#contact">VISIT US</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Bengaluru's<br>Electric Pulse</h1>
+        <p>Rooftop. Cocktails. Vibe.</p>
+        <a href="tel:+919513648016" class="cta-btn">Book A Table</a>
+    </section>
+
+    <section id="vibe" class="vibe">
+        <h2>The Experience</h2>
+        <p>
+            Whether you're here for the open-air rooftop breeze or the high-energy beats downstairs, 
+            Gilly's delivers an atmosphere that refuses to settle. Perfect for corporate lunches 
+            that turn into evening soirées.
+        </p>
+    </section>
+
+    <section id="menu" class="menu">
+        <h2 class="section-title">Curated Selections</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <h3>Maradona Prawns</h3>
+                <p>A spicy, coastal-inspired favorite that pairs perfectly with a cold pint.</p>
+            </div>
+            <div class="menu-item">
+                <h3>Chicken Delhi 6</h3>
+                <p>Authentic North Indian flavors with a Gilly's twist. Rich, creamy, and bold.</p>
+            </div>
+            <div class="menu-item">
+                <h3>Mango Colada</h3>
+                <p>A tropical escape in a glass. Fresh mango blended with premium white rum.</p>
+            </div>
+            <div class="menu-item">
+                <h3>Mushroom Pizza</h3>
+                <p>Wood-fired style base topped with earth mushrooms and generous mozzarella.</p>
+            </div>
+            <div class="menu-item">
+                <h3>Scottish Mint Surprise</h3>
+                <p>A refreshing whisky-based cocktail that clears the palate and sets the mood.</p>
+            </div>
+            <div class="menu-item">
+                <h3>Gilly's Wings</h3>
+                <p>The ultimate bar snack. Crispy, saucy, and impossible to eat just one.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="footer">
+        <h2>Find Us</h2>
+        <address class="address">
+            122/103, Kodihalli Village<br>
+            HAL Old Airport Rd, Murugeshpalya<br>
+            Bengaluru, Karnataka 560017
+        </address>
+        <a href="https://maps.google.com/?q=Gilly's+Restobar+Old+Airport+Road" target="_blank" class="cta-btn" style="background: transparent; border: 1px solid var(--primary); color: var(--primary);">Get Directions</a>
+        <br><br><br>
+        <p style="color: #444; font-size: 0.8rem;">© 2025 Gilly's Restobar. All rights reserved.</p>
+    </section>
+
+</body>
+</html>
