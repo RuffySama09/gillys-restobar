@@ -3,53 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gilly's Restobar | Rooftop, Cocktails & Vibe</title>
+    <title>Gilly's Restobar | The Premier Experience</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary: #FFD700; /* Gold */
-            --dark: #0a0a0a;
-            --dark-gray: #1a1a1a;
-            --text: #e0e0e0;
-            --font-main: 'Helvetica Neue', sans-serif;
+            --gold: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --gold-flat: #d4af37;
+            --dark: #050505;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f0f0f0;
+            --text-muted: #a0a0a0;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
+        html { scroll-behavior: smooth; }
+
         body { 
             background-color: var(--dark); 
-            color: var(--text); 
-            font-family: var(--font-main); 
-            line-height: 1.6;
+            color: var(--text-main); 
+            font-family: 'Montserrat', sans-serif; 
             overflow-x: hidden;
         }
 
         /* TYPOGRAPHY */
-        h1, h2, h3 { color: #fff; text-transform: uppercase; letter-spacing: 2px; }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
         
-        /* NAVIGATION */
+        .gold-text {
+            background: var(--gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ANIMATIONS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* NAV - Glass Effect */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(10, 10, 10, 0.95);
             padding: 20px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
         }
 
-        .logo { font-size: 1.5rem; font-weight: 900; color: var(--primary); }
-        .nav-links a { margin-left: 30px; font-size: 0.9rem; font-weight: 600; }
-        .nav-links a:hover { color: var(--primary); }
+        .logo { 
+            font-size: 1.8rem; 
+            font-weight: 700; 
+            letter-spacing: 2px;
+            color: #fff;
+            text-transform: uppercase;
+        }
 
-        /* HERO SECTION */
+        .nav-links a { 
+            margin-left: 35px; 
+            font-size: 0.8rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            color: #fff;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--gold-flat); }
+
+        /* HERO - Parallax */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-                        url('https://images.unsplash.com/photo-1572116469696-31de0f17cc34?q=80&w=1920&auto=format&fit=crop');
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), #050505), 
+                        url('https://images.unsplash.com/photo-1514362545857-3bc16549766b?q=80&w=1920&auto=format&fit=crop');
+            background-attachment: fixed; /* Parallax Effect */
             background-size: cover;
             background-position: center;
             display: flex;
@@ -60,137 +98,227 @@
             padding: 0 20px;
         }
 
-        .hero h1 { font-size: 4rem; margin-bottom: 20px; line-height: 1.1; }
-        .hero p { font-size: 1.5rem; color: var(--primary); font-weight: 300; margin-bottom: 40px; }
+        .hero h1 { 
+            font-size: 5rem; 
+            line-height: 1.1; 
+            margin-bottom: 20px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
         
-        .cta-btn {
-            padding: 15px 40px;
-            background: var(--primary);
-            color: var(--dark);
-            font-weight: 800;
+        .hero p {
+            font-size: 1.2rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: 50px;
+            color: #ccc;
+        }
+
+        .btn-gold {
+            padding: 18px 45px;
+            background: var(--gold);
+            color: #000;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             border: none;
             cursor: pointer;
+            transition: 0.4s;
+            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
         }
-        .cta-btn:hover { background: #fff; transform: scale(1.05); }
+        .btn-gold:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3); 
+        }
 
-        /* THE VIBE (ROOFTOP) */
-        .vibe { padding: 100px 10%; background: var(--dark-gray); text-align: center; }
-        .vibe h2 { margin-bottom: 30px; color: var(--primary); }
-        .vibe p { max-width: 700px; margin: 0 auto; font-size: 1.1rem; color: #aaa; }
+        /* SECTIONS */
+        section { padding: 100px 10%; position: relative; }
 
-        /* MENU GRID */
-        .menu { padding: 100px 5%; }
-        .section-title { text-align: center; margin-bottom: 60px; font-size: 2.5rem; }
+        .section-header { margin-bottom: 80px; text-align: center; }
+        .section-header h2 { font-size: 3rem; margin-bottom: 20px; }
+        .section-header .line { width: 60px; height: 3px; background: var(--gold); margin: 0 auto; }
+
+        /* THE VIBE - Text & Image overlap */
+        .vibe-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 50px;
+        }
+        .vibe-text { flex: 1; min-width: 300px; }
+        .vibe-text p { font-size: 1.1rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 30px; }
         
+        .vibe-img { 
+            flex: 1; 
+            min-width: 300px; 
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=800');
+            background-size: cover;
+            background-position: center;
+            border: 1px solid var(--glass-border);
+            position: relative;
+        }
+        .vibe-img::after {
+            content: '';
+            position: absolute;
+            top: 20px; left: 20px; right: -20px; bottom: -20px;
+            border: 2px solid var(--gold-flat);
+            z-index: -1;
+        }
+
+        /* MENU - Glass Cards */
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
         }
 
-        .menu-item {
-            background: var(--dark-gray);
-            padding: 30px;
-            border-left: 3px solid var(--primary);
-            transition: 0.3s;
+        .menu-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            backdrop-filter: blur(5px);
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
         }
-        .menu-item:hover { transform: translateY(-10px); background: #222; }
-        .menu-item h3 { font-size: 1.2rem; margin-bottom: 10px; }
-        .menu-item p { font-size: 0.9rem; color: #888; }
 
-        /* LOCATION & FOOTER */
-        .footer {
-            padding: 80px 5%;
-            background: #000;
+        .menu-card:hover { 
+            background: rgba(255, 255, 255, 0.08); 
+            transform: translateY(-10px); 
+            border-color: var(--gold-flat);
+        }
+
+        .menu-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: #fff; }
+        .menu-card p { color: var(--text-muted); font-size: 0.95rem; }
+        .price { 
+            position: absolute; 
+            top: 20px; right: 20px; 
+            color: var(--gold-flat); 
+            font-family: 'Playfair Display', serif; 
+            font-style: italic;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #020202;
+            padding: 80px 5% 40px;
             text-align: center;
-            border-top: 1px solid #333;
+            border-top: 1px solid #222;
         }
+        .footer-logo { font-size: 2.5rem; font-family: 'Playfair Display'; margin-bottom: 30px; display: block; }
         
-        .address { 
-            font-style: normal; 
-            margin: 30px 0; 
-            color: #888; 
-            font-size: 1.1rem;
-        }
-
-        /* MOBILE OPTIMIZATION */
+        /* MOBILE */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; } /* Simplified for single file */
+            .hero h1 { font-size: 3rem; }
+            .nav-links { display: none; }
+            .vibe-img::after { display: none; }
+            section { padding: 80px 5%; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">GILLY'S RESTOBAR</div>
+        <div class="logo">Gilly's</div>
         <div class="nav-links">
-            <a href="#vibe">THE VIBE</a>
-            <a href="#menu">MENU</a>
-            <a href="#contact">VISIT US</a>
+            <a href="#vibe">AMBIANCE</a>
+            <a href="#menu">SIGNATURES</a>
+            <a href="#contact">RESERVE</a>
         </div>
     </nav>
 
-    <section class="hero">
-        <h1>Bengaluru's<br>Electric Pulse</h1>
-        <p>Rooftop. Cocktails. Vibe.</p>
-        <a href="tel:+919513648016" class="cta-btn">Book A Table</a>
+    <header class="hero">
+        <div class="reveal">
+            <p>EST. 2024 • BENGALURU</p>
+            <h1><span class="gold-text">Elevate</span> Your<br>Evenings</h1>
+            <br>
+            <a href="#contact" class="btn-gold">Reserve Your Table</a>
+        </div>
+    </header>
+
+    <section id="vibe">
+        <div class="section-header reveal">
+            <h2>The <span class="gold-text">Vibe</span></h2>
+            <div class="line"></div>
+        </div>
+        <div class="vibe-container reveal">
+            <div class="vibe-text">
+                <p>
+                    Nestled in the heart of the Old Airport Road, Gilly's is more than a restobar—it is an escape. 
+                    Merging the raw energy of Bengaluru with a sophisticated European aesthetic.
+                </p>
+                <p>
+                    From our open-air rooftop sanctuary to the velvet-clad interiors, every corner is designed 
+                    for those who appreciate the finer details. 
+                </p>
+                <p style="color: #fff; font-style: italic;">"A visual and culinary masterpiece."</p>
+            </div>
+            <div class="vibe-img"></div>
+        </div>
     </section>
 
-    <section id="vibe" class="vibe">
-        <h2>The Experience</h2>
-        <p>
-            Whether you're here for the open-air rooftop breeze or the high-energy beats downstairs, 
-            Gilly's delivers an atmosphere that refuses to settle. Perfect for corporate lunches 
-            that turn into evening soirées.
-        </p>
-    </section>
-
-    <section id="menu" class="menu">
-        <h2 class="section-title">Curated Selections</h2>
-        <div class="menu-grid">
-            <div class="menu-item">
+    <section id="menu">
+        <div class="section-header reveal">
+            <h2>Curated <span class="gold-text">Tastes</span></h2>
+            <div class="line"></div>
+        </div>
+        <div class="menu-grid reveal">
+            <div class="menu-card">
+                <span class="price">Chef's Special</span>
                 <h3>Maradona Prawns</h3>
-                <p>A spicy, coastal-inspired favorite that pairs perfectly with a cold pint.</p>
+                <p>Succulent coastal prawns tossed in a proprietary spice blend. A fiery start to the night.</p>
             </div>
-            <div class="menu-item">
+            <div class="menu-card">
                 <h3>Chicken Delhi 6</h3>
-                <p>Authentic North Indian flavors with a Gilly's twist. Rich, creamy, and bold.</p>
+                <p>A nostalgic journey to the capital. Rich, creamy, and smoked to perfection in the clay oven.</p>
             </div>
-            <div class="menu-item">
+            <div class="menu-card">
                 <h3>Mango Colada</h3>
-                <p>A tropical escape in a glass. Fresh mango blended with premium white rum.</p>
+                <p>The essence of tropical luxury. Alphonso mango puree blended with premium white rum.</p>
             </div>
-            <div class="menu-item">
-                <h3>Mushroom Pizza</h3>
-                <p>Wood-fired style base topped with earth mushrooms and generous mozzarella.</p>
-            </div>
-            <div class="menu-item">
-                <h3>Scottish Mint Surprise</h3>
-                <p>A refreshing whisky-based cocktail that clears the palate and sets the mood.</p>
-            </div>
-            <div class="menu-item">
-                <h3>Gilly's Wings</h3>
-                <p>The ultimate bar snack. Crispy, saucy, and impossible to eat just one.</p>
+            <div class="menu-card">
+                <h3>Scottish Mint</h3>
+                <p>A sophisticated whisky cocktail with muddled mint and a hint of elderflower.</p>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="footer">
-        <h2>Find Us</h2>
-        <address class="address">
-            122/103, Kodihalli Village<br>
-            HAL Old Airport Rd, Murugeshpalya<br>
-            Bengaluru, Karnataka 560017
-        </address>
-        <a href="https://maps.google.com/?q=Gilly's+Restobar+Old+Airport+Road" target="_blank" class="cta-btn" style="background: transparent; border: 1px solid var(--primary); color: var(--primary);">Get Directions</a>
-        <br><br><br>
-        <p style="color: #444; font-size: 0.8rem;">© 2025 Gilly's Restobar. All rights reserved.</p>
+    <section id="contact">
+        <div class="section-header reveal">
+            <h2>Visit <span class="gold-text">Us</span></h2>
+            <div class="line"></div>
+        </div>
+        <div style="text-align: center;" class="reveal">
+            <p style="font-size: 1.2rem; margin-bottom: 30px; color: #ccc;">
+                122/103, Kodihalli Village, HAL Old Airport Rd<br>Bengaluru
+            </p>
+            <a href="tel:+919513648016" class="btn-gold">Call : +91 95136 48016</a>
+        </div>
     </section>
 
+    <footer>
+        <span class="footer-logo gold-text">GILLY'S</span>
+        <p style="color: #444; font-size: 0.8rem; letter-spacing: 1px;">DESIGNED FOR EXCELLENCE.</p>
+    </footer>
+
+    <script>
+        // Scroll Animation Script
+        window.addEventListener('scroll', reveal);
+        
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var revealTop = reveals[i].getBoundingClientRect().top;
+                var revealPoint = 150;
+                
+                if (revealTop < windowHeight - revealPoint) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        // Trigger once on load
+        reveal();
+    </script>
 </body>
 </html>
