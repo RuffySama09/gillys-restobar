@@ -3,322 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gilly's Restobar | The Premier Experience</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <title>GILLY'S RESTOBAR | The Pulse of Bangalore</title>
     
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Teko:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         :root {
-            --gold: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            --gold-flat: #d4af37;
-            --dark: #050505;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-main: #f0f0f0;
-            --text-muted: #a0a0a0;
+            --neon-red: #E63946;    /* High Energy Red */
+            --void: #0b0b0b;        /* Deepest Black */
+            --charcoal: #151515;    /* Card BG */
+            --snow: #F1FAEE;        /* Text */
+            --gold: #FFB703;        /* Beer/Accent */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         html { scroll-behavior: smooth; }
-
-        body { 
-            background-color: var(--dark); 
-            color: var(--text-main); 
-            font-family: 'Montserrat', sans-serif; 
-            overflow-x: hidden;
-        }
-
-        /* TYPOGRAPHY */
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
         
-        .gold-text {
-            background: var(--gold);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* ANIMATIONS */
-        .reveal {
+        body {
+            background-color: var(--void);
+            color: var(--snow);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease-out;
+            animation: fadeIn 1s ease-out forwards;
         }
-        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* NAV - Glass Effect */
+        @keyframes fadeIn { to { opacity: 1; } }
+
+        h1, h2, h3, .display-font { font-family: 'Teko', sans-serif; text-transform: uppercase; letter-spacing: 1px; line-height: 0.9; }
+
+        /* 1. LOADER (Sleek Pulse) */
+        #loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--void); z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: transform 0.6s cubic-bezier(0.7, 0, 0.3, 1);
+        }
+        .pulse-logo {
+            font-family: 'Teko', sans-serif; font-size: 4rem; color: var(--neon-red);
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.7; } 100% { transform: scale(1); opacity: 1; } }
+
+        /* 2. NAV (Glassmorphism) */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            position: fixed; top: 0; width: 100%; padding: 20px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(11, 11, 11, 0.8);
+            backdrop-filter: blur(12px);
             z-index: 1000;
-            background: rgba(5, 5, 5, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--glass-border);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-
-        .logo { 
-            font-size: 1.8rem; 
-            font-weight: 700; 
-            letter-spacing: 2px;
-            color: #fff;
-            text-transform: uppercase;
-        }
-
-        .nav-links a { 
-            margin-left: 35px; 
-            font-size: 0.8rem; 
-            text-transform: uppercase; 
-            letter-spacing: 1px;
-            color: #fff;
+        .logo { font-size: 2rem; font-weight: 700; color: #fff; letter-spacing: -1px; }
+        .logo span { color: var(--neon-red); }
+        
+        .book-btn {
+            padding: 10px 30px; 
+            background: transparent; 
+            border: 2px solid var(--snow);
+            color: var(--snow);
+            font-family: 'Teko', sans-serif;
+            font-size: 1.2rem;
             text-decoration: none;
             transition: 0.3s;
-        }
-        .nav-links a:hover { color: var(--gold-flat); }
-
-        /* HERO - Parallax */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), #050505), 
-                        url('https://images.unsplash.com/photo-1514362545857-3bc16549766b?q=80&w=1920&auto=format&fit=crop');
-            background-attachment: fixed; /* Parallax Effect */
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-        }
-
-        .hero h1 { 
-            font-size: 5rem; 
-            line-height: 1.1; 
-            margin-bottom: 20px;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 50px;
-            color: #ccc;
-        }
-
-        .btn-gold {
-            padding: 18px 45px;
-            background: var(--gold);
-            color: #000;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border: none;
-            cursor: pointer;
-            transition: 0.4s;
-            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
-        }
-        .btn-gold:hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3); 
-        }
-
-        /* SECTIONS */
-        section { padding: 100px 10%; position: relative; }
-
-        .section-header { margin-bottom: 80px; text-align: center; }
-        .section-header h2 { font-size: 3rem; margin-bottom: 20px; }
-        .section-header .line { width: 60px; height: 3px; background: var(--gold); margin: 0 auto; }
-
-        /* THE VIBE - Text & Image overlap */
-        .vibe-container {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 50px;
-        }
-        .vibe-text { flex: 1; min-width: 300px; }
-        .vibe-text p { font-size: 1.1rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 30px; }
-        
-        .vibe-img { 
-            flex: 1; 
-            min-width: 300px; 
-            height: 400px;
-            background: url('https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=800');
-            background-size: cover;
-            background-position: center;
-            border: 1px solid var(--glass-border);
-            position: relative;
-        }
-        .vibe-img::after {
-            content: '';
-            position: absolute;
-            top: 20px; left: 20px; right: -20px; bottom: -20px;
-            border: 2px solid var(--gold-flat);
-            z-index: -1;
-        }
-
-        /* MENU - Glass Cards */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .menu-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            padding: 40px;
-            backdrop-filter: blur(5px);
-            transition: 0.4s;
             position: relative;
             overflow: hidden;
         }
-
-        .menu-card:hover { 
-            background: rgba(255, 255, 255, 0.08); 
-            transform: translateY(-10px); 
-            border-color: var(--gold-flat);
+        .book-btn::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 0%; height: 100%;
+            background: var(--snow); transition: 0.3s; z-index: -1;
         }
+        .book-btn:hover { color: var(--void); }
+        .book-btn:hover::before { width: 100%; }
 
-        .menu-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: #fff; }
-        .menu-card p { color: var(--text-muted); font-size: 0.95rem; }
-        .price { 
-            position: absolute; 
-            top: 20px; right: 20px; 
-            color: var(--gold-flat); 
-            font-family: 'Playfair Display', serif; 
-            font-style: italic;
-        }
-
-        /* FOOTER */
-        footer {
-            background: #020202;
-            padding: 80px 5% 40px;
+        /* 3. HERO (Immersive) */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex; align-items: center; justify-content: center;
             text-align: center;
-            border-top: 1px solid #222;
+            overflow: hidden;
         }
-        .footer-logo { font-size: 2.5rem; font-family: 'Playfair Display'; margin-bottom: 30px; display: block; }
+        .hero-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            /* High Energy Pub Image */
+            background: linear-gradient(to bottom, rgba(11,11,11,0.3), rgba(11,11,11,1)),
+                        url('https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            transform: scale(1);
+            transition: transform 10s ease;
+        }
+        .hero:hover .hero-bg { transform: scale(1.05); } /* Subtle zoom effect */
+
+        .hero-content { z-index: 2; padding: 20px; max-width: 900px; }
+        .hero-tag { color: var(--neon-red); font-weight: 700; letter-spacing: 4px; font-size: 1rem; margin-bottom: 20px; display: block; }
+        .hero-title { font-size: clamp(4rem, 10vw, 8rem); color: #fff; margin-bottom: 30px; text-shadow: 0 10px 30px rgba(0,0,0,0.8); }
         
-        /* MOBILE */
+        .scroll-pill {
+            position: absolute; bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 50px;
+            font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
+
+        /* 4. MARQUEE (Agency Touch) */
+        .marquee-container { background: var(--neon-red); color: var(--void); padding: 15px 0; overflow: hidden; white-space: nowrap; transform: rotate(-2deg) scale(1.05); }
+        .marquee-content { display: inline-block; font-family: 'Teko', sans-serif; font-size: 2rem; font-weight: 700; animation: scroll 20s linear infinite; }
+        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* 5. MENU SHOWCASE */
+        .section { padding: 120px 5%; max-width: 1400px; margin: 0 auto; }
+        .section-head { margin-bottom: 80px; }
+        .section-head h2 { font-size: 4rem; color: #fff; }
+        .section-head span { color: var(--neon-red); }
+
+        .menu-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px;
+        }
+
+        .menu-item {
+            position: relative; height: 500px; background: var(--charcoal);
+            overflow: hidden; border-radius: 4px;
+            transition: 0.4s; group;
+        }
+        .menu-item:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(230, 57, 70, 0.2); }
+
+        .menu-img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: 0.5s; opacity: 0.7;
+        }
+        .menu-item:hover .menu-img { transform: scale(1.1); opacity: 1; }
+
+        .menu-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,1), transparent);
+            z-index: 2;
+        }
+        .menu-title { font-size: 2.5rem; color: #fff; }
+        .menu-desc { font-size: 1rem; color: #ccc; margin-top: 5px; }
+        .price-tag { 
+            position: absolute; top: 20px; right: 20px; 
+            background: var(--neon-red); color: #fff; 
+            padding: 5px 15px; font-family: 'Teko', sans-serif; font-size: 1.5rem; 
+            z-index: 3;
+        }
+
+        /* 6. VIBE / EVENTS */
+        .vibe-section {
+            background: url('https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=1920&auto=format&fit=crop') center/cover fixed;
+            height: 80vh;
+            display: flex; align-items: center; justify-content: center;
+            position: relative;
+        }
+        .vibe-overlay {
+            background: rgba(0,0,0,0.8); padding: 60px; text-align: center; border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px); max-width: 800px;
+        }
+
+        /* 7. FOOTER */
+        footer { padding: 80px 5%; background: #050505; border-top: 1px solid #222; }
+        .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .footer-logo { font-size: 3rem; font-family: 'Teko', sans-serif; color: #fff; }
+        .footer-contact p { font-size: 1.2rem; color: #888; margin-bottom: 10px; }
+        .socials a { color: #fff; font-size: 1.5rem; margin-right: 20px; transition: 0.3s; }
+        .socials a:hover { color: var(--neon-red); }
+
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .nav-links { display: none; }
-            .vibe-img::after { display: none; }
-            section { padding: 80px 5%; }
+            .hero-title { font-size: 4rem; }
+            .menu-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            nav { padding: 15px 20px; }
         }
     </style>
 </head>
 <body>
 
+    <div id="loader">
+        <div class="pulse-logo">GILLY'S</div>
+    </div>
+
     <nav>
-        <div class="logo">Gilly's</div>
-        <div class="nav-links">
-            <a href="#vibe">AMBIANCE</a>
-            <a href="#menu">SIGNATURES</a>
-            <a href="#contact">RESERVE</a>
-        </div>
+        <div class="logo">GILLY'S <span>RESTOBAR</span></div>
+        <a href="tel:+918041155566" class="book-btn">RESERVE</a>
     </nav>
 
     <header class="hero">
-        <div class="reveal">
-            <p>EST. 2024 • BENGALURU</p>
-            <h1><span class="gold-text">Elevate</span> Your<br>Evenings</h1>
-            <br>
-            <a href="#contact" class="btn-gold">Reserve Your Table</a>
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <span class="hero-tag">THE DEFINED EXPERIENCE</span>
+            <h1 class="hero-title">MUSIC. MOOD.<br>MEMORIES.</h1>
+            <a href="#menu" class="book-btn" style="background: var(--neon-red); border: none;">VIEW MENU</a>
         </div>
+        <div class="scroll-pill">Scroll to Explore</div>
     </header>
 
-    <section id="vibe">
-        <div class="section-header reveal">
-            <h2>The <span class="gold-text">Vibe</span></h2>
-            <div class="line"></div>
+    <div class="marquee-container">
+        <div class="marquee-content">
+            LIVE MUSIC // DRAUGHT BEER // GUNTOOR CHICKEN // COCKTAILS // GOOD VIBES ONLY // LIVE MUSIC // DRAUGHT BEER // GUNTOOR CHICKEN // COCKTAILS // GOOD VIBES ONLY //
         </div>
-        <div class="vibe-container reveal">
-            <div class="vibe-text">
-                <p>
-                    Nestled in the heart of the Old Airport Road, Gilly's is more than a restobar—it is an escape. 
-                    Merging the raw energy of Bengaluru with a sophisticated European aesthetic.
-                </p>
-                <p>
-                    From our open-air rooftop sanctuary to the velvet-clad interiors, every corner is designed 
-                    for those who appreciate the finer details. 
-                </p>
-                <p style="color: #fff; font-style: italic;">"A visual and culinary masterpiece."</p>
+    </div>
+
+    <section id="menu" class="section">
+        <div class="section-head">
+            <h2 class="display-font">CROWD <span>FAVORITES</span></h2>
+        </div>
+
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="price-tag">₹325</div>
+                <img src="https://images.unsplash.com/photo-1599487484698-8860b89728b5?q=80&w=800&auto=format&fit=crop" class="menu-img" alt="Guntoor Chicken">
+                <div class="menu-overlay">
+                    <h3 class="display-font menu-title">GUNTOOR CHICKEN</h3>
+                    <p class="menu-desc">Spicy, fiery, and authentic. The perfect bar starter.</p>
+                </div>
             </div>
-            <div class="vibe-img"></div>
+
+            <div class="menu-item">
+                <div class="price-tag">₹180</div>
+                <img src="https://images.unsplash.com/photo-1575444758702-4a6b9222336e?q=80&w=800&auto=format&fit=crop" class="menu-img" alt="Draught Beer">
+                <div class="menu-overlay">
+                    <h3 class="display-font menu-title">ICE COLD DRAUGHT</h3>
+                    <p class="menu-desc">Freshly tapped. Served sub-zero.</p>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="price-tag">₹310</div>
+                <img src="https://images.unsplash.com/photo-1513456852971-30cfa382c972?q=80&w=800&auto=format&fit=crop" class="menu-img" alt="Nachos">
+                <div class="menu-overlay">
+                    <h3 class="display-font menu-title">MURGH KEEMA NACHOS</h3>
+                    <p class="menu-desc">Loaded with cheese, salsa, and spicy chicken keema.</p>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="price-tag">₹340</div>
+                <img src="https://images.unsplash.com/photo-1628294895950-98052523e036?q=80&w=800&auto=format&fit=crop" class="menu-img" alt="Spicy Curry">
+                <div class="menu-overlay">
+                    <h3 class="display-font menu-title">CHEF'S SPECIAL CURRY</h3>
+                    <p class="menu-desc">Slow-cooked spices. Best paired with Neer Dosa.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="menu">
-        <div class="section-header reveal">
-            <h2>Curated <span class="gold-text">Tastes</span></h2>
-            <div class="line"></div>
-        </div>
-        <div class="menu-grid reveal">
-            <div class="menu-card">
-                <span class="price">Chef's Special</span>
-                <h3>Maradona Prawns</h3>
-                <p>Succulent coastal prawns tossed in a proprietary spice blend. A fiery start to the night.</p>
-            </div>
-            <div class="menu-card">
-                <h3>Chicken Delhi 6</h3>
-                <p>A nostalgic journey to the capital. Rich, creamy, and smoked to perfection in the clay oven.</p>
-            </div>
-            <div class="menu-card">
-                <h3>Mango Colada</h3>
-                <p>The essence of tropical luxury. Alphonso mango puree blended with premium white rum.</p>
-            </div>
-            <div class="menu-card">
-                <h3>Scottish Mint</h3>
-                <p>A sophisticated whisky cocktail with muddled mint and a hint of elderflower.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="section-header reveal">
-            <h2>Visit <span class="gold-text">Us</span></h2>
-            <div class="line"></div>
-        </div>
-        <div style="text-align: center;" class="reveal">
-            <p style="font-size: 1.2rem; margin-bottom: 30px; color: #ccc;">
-                122/103, Kodihalli Village, HAL Old Airport Rd<br>Bengaluru
+    <section class="vibe-section">
+        <div class="vibe-overlay">
+            <h2 class="display-font" style="font-size: 3.5rem; color: #fff; margin-bottom: 20px;">LIVE LOUD.</h2>
+            <p style="font-size: 1.2rem; color: #ddd; margin-bottom: 30px;">
+                From electric live gigs to sports screenings. Gilly's is the heartbeat of Bangalore's nightlife.
             </p>
-            <a href="tel:+919513648016" class="btn-gold">Call : +91 95136 48016</a>
+            <a href="#" class="book-btn">CHECK EVENTS</a>
         </div>
     </section>
 
     <footer>
-        <span class="footer-logo gold-text">GILLY'S</span>
-        <p style="color: #444; font-size: 0.8rem; letter-spacing: 1px;">DESIGNED FOR EXCELLENCE.</p>
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">GILLY'S</div>
+                <p style="color: #666; margin-top: 20px;">
+                    Authentic Indian flavors meeting premium bar culture.
+                </p>
+            </div>
+            <div class="footer-contact">
+                <h3 class="display-font" style="color: #fff; font-size: 1.8rem; margin-bottom: 20px;">VISIT US</h3>
+                <p>New BEL Road | Koramangala | Bannerghatta</p>
+                <p>Open Daily: 12:00 PM - 1:00 AM</p>
+                <br>
+                <div class="socials">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fas fa-map-marker-alt"></i></a>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 60px; border-top: 1px solid #222; padding-top: 20px; color: #444; font-size: 0.8rem; text-align: center;">
+            © 2026 GILLY'S RESTOBAR. ALL RIGHTS RESERVED.
+        </div>
     </footer>
 
     <script>
-        // Scroll Animation Script
-        window.addEventListener('scroll', reveal);
-        
-        function reveal() {
-            var reveals = document.querySelectorAll('.reveal');
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var revealTop = reveals[i].getBoundingClientRect().top;
-                var revealPoint = 150;
-                
-                if (revealTop < windowHeight - revealPoint) {
-                    reveals[i].classList.add('active');
-                }
-            }
-        }
-        // Trigger once on load
-        reveal();
+        // 1. FAIL-SAFE LOADER
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            loader.style.transform = 'translateY(-100%)';
+        });
+
+        // Backup safety in case load hangs
+        setTimeout(() => {
+            document.getElementById('loader').style.transform = 'translateY(-100%)';
+        }, 2000);
     </script>
 </body>
 </html>
